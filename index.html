@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo Leveling RPG - Personal Development System</title>
+    <meta name="description" content="Transform your self-improvement journey into an engaging RPG experience with character progression, quests, and achievements.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-container">
+                <button class="nav-button active" data-page="status">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>STATUS</span>
+                </button>
+                <button class="nav-button" data-page="quests">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14,2 14,8 20,8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10,9 9,9 8,9"></polyline>
+                    </svg>
+                    <span>QUESTS</span>
+                </button>
+                <button class="nav-button" data-page="skills">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>SKILLS</span>
+                </button>
+                <button class="nav-button" data-page="sins">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                    <span>SIN COMMAND</span>
+                </button>
+                <button class="nav-button" data-page="achievements">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                        <path d="M4 22h16l-1-7H5l-1 7z"></path>
+                        <path d="M8 9h8"></path>
+                        <path d="M10 2v7"></path>
+                        <path d="M14 2v7"></path>
+                    </svg>
+                    <span>ACHIEVEMENTS</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Status Page -->
+        <div id="status-page" class="page active">
+            <div class="status-window">
+                <div class="page-header">
+                    <div class="header-icon">
+                        <span>!</span>
+                    </div>
+                    <h1 class="system-title">STATUS</h1>
+                </div>
+
+                <div class="character-info">
+                    <div class="character-details">
+                        <div class="detail-row">
+                            <span class="detail-label">NAME:</span>
+                            <span class="detail-value" id="character-name">Hunter</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">JOB:</span>
+                            <span class="detail-value job-text" id="character-job">E RANK HUNTER</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">TITLE:</span>
+                            <span class="detail-value">AWAKENED</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">RANK:</span>
+                            <span class="detail-value rank-text" id="character-rank">E RANK HUNTER</span>
+                        </div>
+                    </div>
+
+                    <div class="level-section">
+                        <div class="level-number" id="character-level">1</div>
+                        <div class="level-label">LEVEL</div>
+                        
+                        <div class="exp-section">
+                            <div class="exp-info">
+                                <span>EXP</span>
+                                <span id="exp-display">0 / 100</span>
+                            </div>
+                            <div class="exp-bar">
+                                <div class="exp-fill" id="exp-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hp-mp-section">
+                    <div class="hp-mp-item">
+                        <span class="hp-mp-label">HP:</span>
+                        <span class="hp-mp-value" id="character-hp">100</span>
+                    </div>
+                    <div class="hp-mp-item">
+                        <span class="hp-mp-label">MP:</span>
+                        <span class="hp-mp-value" id="character-mp">50</span>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">STR:</span>
+                        <div class="stat-controls">
+                            <span class="stat-value" id="stat-str">010</span>
+                            <span class="stat-gained" id="str-gained">(+0)</span>
+                            <button class="stat-button" data-stat="str">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">VIT:</span>
+                        <div class="stat-controls">
+                            <span class="stat-value" id="stat-vit">010</span>
+                            <span class="stat-gained" id="vit-gained">(+0)</span>
+                            <button class="stat-button" data-stat="vit">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">INT:</span>
+                        <div class="stat-controls">
+                            <span class="stat-value" id="stat-int">010</span>
+                            <span class="stat-gained" id="int-gained">(+0)</span>
+                            <button class="stat-button" data-stat="int">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">PER:</span>
+                        <div class="stat-controls">
+                            <span class="stat-value" id="stat-per">010</span>
+                            <span class="stat-gained" id="per-gained">(+0)</span>
+                            <button class="stat-button" data-stat="per">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">AGI:</span>
+                        <div class="stat-controls">
+                            <span class="stat-value" id="stat-agi">010</span>
+                            <span class="stat-gained" id="agi-gained">(+0)</span>
+                            <button class="stat-button" data-stat="agi">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">CMD:</span>
+                        <div class="stat-controls">
+                            <span class="stat-value" id="stat-cmd">010</span>
+                            <span class="stat-gained" id="cmd-gained">(+0)</span>
+                            <button class="stat-button" data-stat="cmd">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <div class="total-stats">
+                        <span class="footer-label">TOTAL STATS:</span>
+                        <span class="footer-value" id="total-stats">60</span>
+                    </div>
+                    <div class="available-points">
+                        <span class="footer-label">Available Points:</span>
+                        <div class="points-info">
+                            <span class="points-note">(Only for STR, VIT, INT)</span>
+                            <span class="footer-value" id="available-points">5</span>
+                        </div>
+                    </div>
+                    <div class="available-points">
+                        <span class="footer-label">Available Points:</span>
+                        <div class="points-info">
+                            <span class="points-note">(Only for PER, AGI, CMD)</span>
+                            <span class="footer-value" id="special-points">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quests Page -->
+        <div id="quests-page" class="page">
+            <div class="quest-container">
+                <div class="quest-window">
+                    <div class="page-header">
+                        <div class="header-icon">
+                            <span>!</span>
+                        </div>
+                        <h1 class="system-title">QUEST INFO</h1>
+                    </div>
+
+                    <div class="quest-title">
+                        <h2>DAILY QUEST - TRAIN TO BECOME</h2>
+                        <h2>A FORMIDABLE HUNTER</h2>
+                    </div>
+
+                    <div class="goals-section">
+                        <h3 class="goals-title">GOALS</h3>
+                        <div class="daily-quests" id="daily-quests">
+                            <!-- Daily quests will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="warning-section">
+                        <p class="warning-title">CAUTION!</p>
+                        <p class="warning-text">- IF THE DAILY QUEST</p>
+                        <p class="warning-text">REMAINS INCOMPLETE, PENALTIES</p>
+                        <p class="warning-text">WILL BE GIVEN ACCORDINGLY.</p>
+                    </div>
+
+                    <div class="timer-section">
+                        <div class="timer-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="timer-text" id="daily-timer">Reset in: 23:59:59</div>
+                    </div>
+                </div>
+
+                <div class="quest-window create-quest">
+                    <h3 class="system-title">CREATE CUSTOM QUEST</h3>
+                    <button class="create-quest-button" id="open-quest-modal-btn">
+                        <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        NEW QUEST
+                    </button>
+                </div>
+
+                <div class="quest-window custom-quests" id="custom-quests-container" style="display: none;">
+                    <h3 class="system-title">ACTIVE CUSTOM QUESTS</h3>
+                    <div class="custom-quests-list" id="custom-quests">
+                        <!-- Custom quests will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Page -->
+        <div id="skills-page" class="page">
+            <div class="skills-container">
+                <div class="system-window">
+                    <h3 class="system-title">CREATE NEW SKILL</h3>
+                    <button class="create-skill-button" id="open-skill-modal-btn">
+                        <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        NEW SKILL
+                    </button>
+                </div>
+
+                <div class="system-window">
+                    <div class="page-header">
+                        <div class="header-icon">
+                            <span>!</span>
+                        </div>
+                        <h1 class="system-title">DAILY LIFE SKILLS</h1>
+                    </div>
+                    
+                    <div class="skills-grid" id="skills-grid">
+                        <!-- Skills will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sin Command Page -->
+        <div id="sins-page" class="page">
+            <div class="sins-container">
+                <div class="system-window">
+                    <h3 class="system-title">CREATE SIN QUEST</h3>
+                    <button class="create-quest-button" id="open-sin-quest-modal-btn">
+                        <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        NEW SIN QUEST
+                    </button>
+                </div>
+
+                <div class="system-window">
+                    <div class="page-header">
+                        <div class="header-icon">
+                            <span>⚡</span>
+                        </div>
+                        <h1 class="system-title">SEVEN DEADLY SINS</h1>
+                    </div>
+                    
+                    <div class="sins-grid" id="sins-grid">
+                        <!-- Sins will be populated here -->
+                    </div>
+                </div>
+
+                <div class="quest-window sin-quests" id="sin-quests-container" style="display: none;">
+                    <h3 class="system-title">ACTIVE SIN QUESTS</h3>
+                    <div class="sin-quests-list" id="sin-quests">
+                        <!-- Sin quests will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Page -->
+        <div id="achievements-page" class="page">
+            <div class="achievements-container">
+                <div class="system-window">
+                    <div class="page-header">
+                        <div class="header-icon">
+                            <span>🏆</span>
+                        </div>
+                        <h1 class="system-title">ACHIEVEMENTS</h1>
+                    </div>
+                    
+                    <div class="achievements-stats" id="achievements-stats">
+                        <!-- Achievement stats will be populated here -->
+                    </div>
+
+                    <div class="achievements-grid" id="achievements-grid">
+                        <!-- Achievements will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quest Creation Modal -->
+    <div id="quest-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="inline-flex items-center space-x-2">
+                    <div class="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                        <span class="text-black text-sm font-bold">!</span>
+                    </div>
+                    <h2>QUEST CREATION</h2>
+                </div>
+                <button class="close-button" id="close-quest-modal-btn">&times;</button>
+            </div>
+            <form id="quest-form">
+                <div class="form-group">
+                    <label for="quest-name">QUEST NAME</label>
+                    <input type="text" id="quest-name" name="questName" placeholder="Enter quest name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quest-description">DESCRIPTION</label>
+                    <textarea id="quest-description" name="questDescription" placeholder="Quest description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="quest-difficulty">DIFFICULTY TIER</label>
+                    <select id="quest-difficulty" name="questDifficulty" required>
+                        <option value="normal">Normal - Standard rewards</option>
+                        <option value="hard">Hard - 1.5x rewards</option>
+                        <option value="hell">Hell - 2x rewards + Achievement</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quest-time-limit">TIME LIMIT (HOURS)</label>
+                        <input type="number" id="quest-time-limit" name="questTimeLimit" min="1" max="168" value="24" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quest-target">TARGET VALUE</label>
+                        <input type="number" id="quest-target" name="questTarget" min="1" value="1" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quest-reward-type">REWARD TYPE</label>
+                        <select id="quest-reward-type" name="questRewardType" required>
+                            <option value="stat">Specific Stat</option>
+                            <option value="freePoints">Free Stat Points</option>
+                            <option value="skill">Skill Proficiency %</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quest-reward-target">REWARD TARGET</label>
+                        <select id="quest-reward-target" name="questRewardTarget" required>
+                            <option value="str">STR</option>
+                            <option value="vit">VIT</option>
+                            <option value="int">INT</option>
+                            <option value="per">PER</option>
+                            <option value="agi">AGI</option>
+                            <option value="cmd">CMD</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quest-reward-amount">REWARD AMOUNT</label>
+                        <input type="number" id="quest-reward-amount" name="questRewardAmount" min="1" value="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quest-exp-reward">EXP REWARD</label>
+                        <input type="number" id="quest-exp-reward" name="questExpReward" min="0" value="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quest-penalty">PENALTY (STAT POINTS)</label>
+                        <input type="number" id="quest-penalty" name="questPenalty" min="1" value="3" required>
+                    </div>
+                </div>
+                <div id="hell-tier-section" class="hell-tier-section" style="display: none;">
+                    <h4>HELL TIER ACHIEVEMENT</h4>
+                    <div class="form-group">
+                        <label for="achievement-title">ACHIEVEMENT TITLE</label>
+                        <input type="text" id="achievement-title" name="achievementTitle" placeholder="Achievement name">
+                    </div>
+                    <div class="form-group">
+                        <label for="achievement-description">ACHIEVEMENT DESCRIPTION</label>
+                        <textarea id="achievement-description" name="achievementDescription" placeholder="Description of the achievement" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-button">CREATE QUEST</button>
+                    <button type="button" class="cancel-button" id="cancel-quest-btn">CANCEL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Skill Creation Modal -->
+    <div id="skill-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="inline-flex items-center space-x-2">
+                    <div class="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                        <span class="text-black text-sm font-bold">!</span>
+                    </div>
+                    <h2>SKILL CREATION</h2>
+                </div>
+                <button class="close-button" id="close-skill-modal-btn">&times;</button>
+            </div>
+            <form id="skill-form">
+                <div class="form-group">
+                    <label for="skill-name">SKILL NAME</label>
+                    <input type="text" id="skill-name" name="skillName" placeholder="Enter skill name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="skill-category">CATEGORY</label>
+                        <select id="skill-category" name="skillCategory" required>
+                            <option value="daily">Daily Life</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="skill-icon">ICON</label>
+                        <select id="skill-icon" name="skillIcon" required>
+                            <option value="fas fa-eye">Eye (Observation)</option>
+                            <option value="fas fa-circle">Circle (Aura)</option>
+                            <option value="fas fa-heart">Heart (Charm)</option>
+                            <option value="fas fa-shield-alt">Shield (Protection)</option>
+                            <option value="fas fa-bullseye">Target (Focus)</option>
+                            <option value="fas fa-running">Running (Endurance)</option>
+                            <option value="fas fa-star">Star (General)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="skill-max-proficiency">MAX PROFICIENCY</label>
+                    <input type="number" id="skill-max-proficiency" name="skillMaxProficiency" min="50" max="1000" value="100" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-button">CREATE SKILL</button>
+                    <button type="button" class="cancel-button" id="cancel-skill-btn">CANCEL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sin Quest Creation Modal -->
+    <div id="sin-quest-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>CREATE SIN QUEST</h2>
+                <button class="close-button" id="close-sin-quest-modal-btn">&times;</button>
+            </div>
+            <form id="sin-quest-form">
+                <div class="form-group">
+                    <label for="sin-quest-name">Quest Name:</label>
+                    <input type="text" id="sin-quest-name" name="sinQuestName" required>
+                </div>
+                <div class="form-group">
+                    <label for="sin-quest-sin">Sin Type:</label>
+                    <select id="sin-quest-sin" name="sinQuestSin" required>
+                        <option value="Pride">Pride</option>
+                        <option value="Greed">Greed</option>
+                        <option value="Lust">Lust</option>
+                        <option value="Envy">Envy</option>
+                        <option value="Gluttony">Gluttony</option>
+                        <option value="Wrath">Wrath</option>
+                        <option value="Sloth">Sloth</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sin-quest-description">Description:</label>
+                    <textarea id="sin-quest-description" name="sinQuestDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="sin-quest-difficulty">Difficulty:</label>
+                    <select id="sin-quest-difficulty" name="sinQuestDifficulty" required>
+                        <option value="easy">Easy (10 sin points)</option>
+                        <option value="medium">Medium (25 sin points)</option>
+                        <option value="hard">Hard (50 sin points)</option>
+                        <option value="extreme">Extreme (100 sin points)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sin-quest-target">Target Amount:</label>
+                    <input type="number" id="sin-quest-target" name="sinQuestTarget" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="sin-quest-duration">Duration (hours):</label>
+                    <input type="number" id="sin-quest-duration" name="sinQuestDuration" min="1" max="168" required>
+                </div>
+                <button type="submit" class="submit-button">CREATE SIN QUEST</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
